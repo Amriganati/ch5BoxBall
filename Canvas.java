@@ -100,7 +100,12 @@ public class Canvas
         graphic.draw(shape);
         canvas.repaint();
     }
- 
+    
+    public void drawRectangle(int xpos, int ypos, int width, int height)
+    {
+       
+        canvas.repaint();
+    }
     /**
      * Fill the internal dimensions of a given shape with the current 
      * foreground color of the canvas.

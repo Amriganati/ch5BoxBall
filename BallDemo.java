@@ -14,7 +14,7 @@ import java.awt.Color;
 public class BallDemo   
 {
     private Canvas myCanvas;
-
+    private Canvas Canvasb;
     /**
      * Create a BallDemo object. Creates a fresh canvas and makes it visible.
      */
@@ -53,4 +53,15 @@ public class BallDemo
             }
         }
     }
+    
+    public void boxBounce()
+    {
+        Canvasb = new Canvas("rect", 600 , 400 , Color.black);
+        
+        myCanvas.setVisible(true);
+        
+        
+    }
+
 }
+
