@@ -21,6 +21,7 @@ public class BallDemo
     public BallDemo()
     {
         myCanvas = new Canvas("Ball Demo", 600, 500);
+        Canvasb = new Canvas("Pong Rect" , 600 , 500);
     }
 
     /**
@@ -56,12 +57,23 @@ public class BallDemo
     
     public void boxBounce()
     {
-        Canvasb = new Canvas("rect", 600 , 400 , Color.black);
-        
-        myCanvas.setVisible(true);
         
         
+        Canvasb.setVisible(true);
+        
+        //draw the rectangle inside the canvas
+        Canvasb.drawRectangle();
+        
+        //draw the four lines that act as the walls for the rectangle
+        
+        Canvasb.drawLine(125,125,125,250); //left wall
+        Canvasb.drawLine(125,125,350,125); // top wall
+        Canvasb.drawLine(125,250,350,250); //bottom wall
+        Canvasb.drawLine(350,125,350,250); //right wall
+        
+        // create the number, color, and size of the balls
     }
-
+    
+    
 }
 

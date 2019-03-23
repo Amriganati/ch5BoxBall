@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.awt.geom.*;
+import java.util.Random;
+import java.util.HashMap;
 /**
  * "This method draws a rectangle (the box) 
  * on screen and between five and thirty balls that move inside the box."
@@ -9,21 +11,47 @@ import java.awt.geom.*;
  */
 public class BoxBall
 {
-    // instance variables - replace the example below with your own
+    private static final int DIST = 2;
+    
     private Color color;
     private int diameter;
     private int xspeed;
     private int yspeed;
     private int yPosition;
     private int xPosition;
+    private int boxwidth;
+    private int boxheight;
     private Canvas canvas;
+    private Random distRandy;
+    private Random distRandx;
+    private boolean bounceX;
+    private boolean bounceY;
     /**
      * Constructor for objects of class BoxBall
+     * @param xPos  the horizontal coordinate of the ball
+     * @param yPos  the vertical coordinate of the ball
+     * @param ballDiameter  the diameter (in pixels) of the ball
+     * @param ballColor  the color of the ball
+     * @param drawingCanvas  the canvas to draw this ball on
+     * @param distRandy the random distance integer on which y-axis ball
+     * movement is determined
+     * @param distRandx the random distance integer on which x-axis ball 
+     * movement is determined.
      */
-    public BoxBall()
+    
+    public BoxBall(int xPos, int yPos, int ballDiameter, Color ballColor, 
+    Canvas drawingCanvas)
     {
         // initialise instance variables
-        
+        xPosition = xPos;
+        yPosition = yPos;
+        color = ballColor;
+        diameter = ballDiameter;
+        canvas = drawingCanvas;
+        distRandy = new Random();
+        distRandx = new Random();
+        bounceX = false;
+        bounceY = false;
     }
 
     /**
@@ -36,8 +64,64 @@ public class BoxBall
         canvas.fillCircle(xPosition, yPosition, diameter);
         
     }
+    
+    /**
+     * Erase this ball at its current position.
+     **/
+    public void erase()
+    {
+        canvas.eraseCircle(xPosition, yPosition, diameter);
+    }    
 
-
+    
+    public void move()
+    {
+        //remove from the current position on the canvas
+        erase();
+        
+        if(xPosition == 125 )
+        {
+            bounceX = false;
+        }
+        
+        if(xPosition == 350 )
+        {
+            bounceX = true;
+        }
+        
+        if(yPosition == 125)
+        {
+            bounceY = false;
+        }
+        
+        if(yPosition == 250)
+        {
+            bounceY = true;
+        }
+        
+        while(bounceX = true)
+        {
+            xPosition += distRandx.nextInt((-8 - -2) + 1);
+        }
+        
+        while(bounceX = false)
+        {
+            xPosition += distRandx.nextInt((0 - 6) + 1);
+        }
+        
+        while(bounceY = true)
+        {
+            yPosition += distRandy.nextInt((-8 - -2) + 1);
+        }
+        
+        while(bounceY = false)
+        {
+            yPosition += distRandy.nextInt((0 - 6) + 1);
+        }
+        
+        
+        draw();
+    }
     
     /**
      * return the horizontal position of this ball
