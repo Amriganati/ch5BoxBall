@@ -74,49 +74,49 @@ public class BoxBall
     }    
 
     
-    public void move()
+    public void movebb()
     {
         //remove from the current position on the canvas
         erase();
-        
+        // if the balls position is at the left of the box switch x direction
         if(xPosition == 125 )
         {
             bounceX = false;
         }
-        
+        // if the balls position is at the right of the box switch x direction
         if(xPosition == 350 )
         {
             bounceX = true;
         }
-        
+        // if the ball's y position is at the top of the box switch y direction
         if(yPosition == 125)
         {
             bounceY = false;
         }
-        
+        // if the ball's y position is at the bottom of the box switch y direction
         if(yPosition == 250)
         {
             bounceY = true;
         }
-        
+        // when the right wall has been hit start moving left in increments of -7 to -1
         while(bounceX = true)
         {
-            xPosition += distRandx.nextInt((-8 - -2) + 1);
+            xPosition -= distRandx.nextInt((7) + 1)- 8;
         }
-        
+        // when the left wall has been hit start moving right in increments of 1 to 7
         while(bounceX = false)
         {
-            xPosition += distRandx.nextInt((0 - 6) + 1);
+            xPosition += distRandx.nextInt(7) + 1;
         }
-        
+        //when the top wall has been hit start moving down in increments of -7 to -1
         while(bounceY = true)
         {
-            yPosition += distRandy.nextInt((-8 - -2) + 1);
+            yPosition -= distRandy.nextInt((7) + 1) - 8;
         }
-        
+        //when the bottom wall has been hit start moving up in increments of 1 to 7
         while(bounceY = false)
         {
-            yPosition += distRandy.nextInt((0 - 6) + 1);
+            yPosition += distRandy.nextInt(7) + 1;
         }
         
         

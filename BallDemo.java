@@ -72,6 +72,19 @@ public class BallDemo
         Canvasb.drawLine(350,125,350,250); //right wall
         
         // create the number, color, and size of the balls
+        
+        BoxBall testball = new BoxBall(200, 200 ,15 ,Color.WHITE, Canvasb);
+        testball.draw();
+        
+        boolean exist = true;
+        
+        while(exist)
+        {
+            Canvasb.wait(50);
+            
+            testball.movebb();
+        }
+        
     }
     
     
