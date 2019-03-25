@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=BoxBall
 comment0.text=\r\n\ "This\ method\ draws\ a\ rectangle\ (the\ box)\ \r\n\ on\ screen\ and\ between\ five\ and\ thirty\ balls\ that\ move\ inside\ the\ box."\r\n\r\n\ @author\ Andrew\ Riganati\r\n\ @version\ 3/22/2019\r\n
-comment1.params=xPos\ yPos\ ballDiameter\ ballColor\ drawingCanvas
-comment1.target=BoxBall(int,\ int,\ int,\ java.awt.Color,\ Canvas)
+comment1.params=xPos\ yPos\ ballDiameter\ ballColor\ toppos\ botpos\ leftpos\ rightpos\ drawingCanvas
+comment1.target=BoxBall(int,\ int,\ int,\ java.awt.Color,\ int,\ int,\ int,\ int,\ Canvas)
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ BoxBall\r\n\ @param\ xPos\ \ the\ horizontal\ coordinate\ of\ the\ ball\r\n\ @param\ yPos\ \ the\ vertical\ coordinate\ of\ the\ ball\r\n\ @param\ ballDiameter\ \ the\ diameter\ (in\ pixels)\ of\ the\ ball\r\n\ @param\ ballColor\ \ the\ color\ of\ the\ ball\r\n\ @param\ drawingCanvas\ \ the\ canvas\ to\ draw\ this\ ball\ on\r\n\ @param\ distRandy\ the\ random\ distance\ integer\ on\ which\ y-axis\ ball\r\n\ movement\ is\ determined\r\n\ @param\ distRandx\ the\ random\ distance\ integer\ on\ which\ x-axis\ ball\ \r\n\ movement\ is\ determined.\r\n
 comment2.params=
 comment2.target=void\ draw()
@@ -11,7 +11,7 @@ comment3.params=
 comment3.target=void\ erase()
 comment3.text=\r\n\ Erase\ this\ ball\ at\ its\ current\ position.\r\n
 comment4.params=
-comment4.target=void\ movebb()
+comment4.target=void\ move()
 comment5.params=
 comment5.target=int\ getXPosition()
 comment5.text=\r\n\ return\ the\ horizontal\ position\ of\ this\ ball\r\n

@@ -21,9 +21,9 @@ public class BallDemo
     public BallDemo()
     {
         myCanvas = new Canvas("Ball Demo", 600, 500);
-        Canvasb = new Canvas("Pong Rect" , 600 , 500);
     }
-
+     
+     
     /**
      * Simulate two bouncing balls
      */
@@ -57,32 +57,35 @@ public class BallDemo
     
     public void boxBounce()
     {
-        
-        
+        int top = 125;
+        int left = 125;
+        int right = 350;
+        int bottom = 250;
         Canvasb.setVisible(true);
         
         //draw the rectangle inside the canvas
         Canvasb.drawRectangle();
         
         //draw the four lines that act as the walls for the rectangle
-        
-        Canvasb.drawLine(125,125,125,250); //left wall
-        Canvasb.drawLine(125,125,350,125); // top wall
-        Canvasb.drawLine(125,250,350,250); //bottom wall
-        Canvasb.drawLine(350,125,350,250); //right wall
+        myCanvas.setForegroundColor(Color.BLACK);
+        myCanvas.drawLine(top,left,top,bottom); //left wall
+        myCanvas.drawLine(top,left,right,top); // top wall
+        myCanvas.drawLine(left,bottom,right,bottom); //bottom wall
+        myCanvas.drawLine(right,top,right,bottom); //right wall
         
         // create the number, color, and size of the balls
         
-        BoxBall testball = new BoxBall(200, 200 ,15 ,Color.WHITE, Canvasb);
+        BoxBall testball = new BoxBall(200, 200 ,15 ,Color.BLACK, top, bottom, left,
+        right,Canvasb);
         testball.draw();
         
         boolean exist = true;
         
-        while(exist)
+        while(exist = true)
         {
             Canvasb.wait(50);
             
-            testball.movebb();
+            testball.move();
         }
         
     }

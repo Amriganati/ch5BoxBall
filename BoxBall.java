@@ -17,15 +17,17 @@ public class BoxBall
     private int diameter;
     private int xspeed;
     private int yspeed;
+    private Ellipse2D.Double circle;
     private int yPosition;
     private int xPosition;
-    private int boxwidth;
-    private int boxheight;
+    private final int top;
+    private final int bottom;
+    private final int left;
+    private final int right;
     private Canvas canvas;
-    private Random distRandy;
-    private Random distRandx;
-    private boolean bounceX;
-    private boolean bounceY;
+    private int ySpeed = 1;
+    private int xSpeed = 2;
+
     /**
      * Constructor for objects of class BoxBall
      * @param xPos  the horizontal coordinate of the ball
@@ -39,8 +41,8 @@ public class BoxBall
      * movement is determined.
      */
     
-    public BoxBall(int xPos, int yPos, int ballDiameter, Color ballColor, 
-    Canvas drawingCanvas)
+    public BoxBall(int xPos, int yPos, int ballDiameter, Color ballColor,int toppos, 
+    int botpos, int leftpos, int rightpos, Canvas drawingCanvas)
     {
         // initialise instance variables
         xPosition = xPos;
@@ -48,10 +50,12 @@ public class BoxBall
         color = ballColor;
         diameter = ballDiameter;
         canvas = drawingCanvas;
-        distRandy = new Random();
-        distRandx = new Random();
-        bounceX = false;
-        bounceY = false;
+        top = toppos;
+        bottom = botpos;
+        left = leftpos;
+        right = rightpos;
+        
+        
     }
 
     /**
@@ -74,52 +78,38 @@ public class BoxBall
     }    
 
     
-    public void movebb()
-    {
-        //remove from the current position on the canvas
+    public void move()
+    { 
         erase();
-        // if the balls position is at the left of the box switch x direction
-        if(xPosition == 125 )
-        {
-            bounceX = false;
-        }
-        // if the balls position is at the right of the box switch x direction
-        if(xPosition == 350 )
-        {
-            bounceX = true;
-        }
-        // if the ball's y position is at the top of the box switch y direction
-        if(yPosition == 125)
-        {
-            bounceY = false;
-        }
-        // if the ball's y position is at the bottom of the box switch y direction
-        if(yPosition == 250)
-        {
-            bounceY = true;
-        }
-        // when the right wall has been hit start moving left in increments of -7 to -1
-        while(bounceX = true)
-        {
-            xPosition -= distRandx.nextInt((7) + 1)- 8;
-        }
-        // when the left wall has been hit start moving right in increments of 1 to 7
-        while(bounceX = false)
-        {
-            xPosition += distRandx.nextInt(7) + 1;
-        }
-        //when the top wall has been hit start moving down in increments of -7 to -1
-        while(bounceY = true)
-        {
-            yPosition -= distRandy.nextInt((7) + 1) - 8;
-        }
-        //when the bottom wall has been hit start moving up in increments of 1 to 7
-        while(bounceY = false)
-        {
-            yPosition += distRandy.nextInt(7) + 1;
+        int top = 125;
+        int left = 125;
+        int right = 350;
+        int bottom = 250;
+       
+        yPosition += ySpeed;
+        xPosition += xSpeed;
+        //if xPosition  +diameter > right
+        // xPosition = right - diameter
+        if(yPosition <= (top - diameter)) {
+            yPosition = (int)(top - diameter);
+             yPosition = ySpeed * 1;
         }
         
+        if(yPosition >= (bottom - diameter)) {
+            yPosition = (int)(bottom - diameter);
+            //
+             yPosition = ySpeed * -1;
+        }
         
+        if(xPosition <= (left - diameter)) {
+            xPosition = (int)(left - diameter);
+             xPosition = xSpeed * 1;
+        }
+        
+        if(xPosition >= (right - diameter)) {
+            xPosition = (int)(right - diameter);
+             xPosition = xSpeed * -1;
+        }
         draw();
     }
     

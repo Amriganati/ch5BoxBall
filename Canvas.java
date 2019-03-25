@@ -77,7 +77,7 @@ public class Canvas
             graphic = (Graphics2D)canvasImage.getGraphics();
             graphic.setColor(backgroundColor);
             graphic.fillRect(0, 0, size.width, size.height);
-            graphic.setColor(Color.black);
+            graphic.setColor(Color.white);
         }
         frame.setVisible(true);
     }
