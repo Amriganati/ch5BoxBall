@@ -61,10 +61,10 @@ public class BallDemo
         int left = 125;
         int right = 350;
         int bottom = 250;
-        Canvasb.setVisible(true);
+        myCanvas.setVisible(true);
         
         //draw the rectangle inside the canvas
-        Canvasb.drawRectangle();
+        myCanvas.drawRectangle();
         
         //draw the four lines that act as the walls for the rectangle
         myCanvas.setForegroundColor(Color.BLACK);
@@ -76,14 +76,20 @@ public class BallDemo
         // create the number, color, and size of the balls
         
         BoxBall testball = new BoxBall(200, 200 ,15 ,Color.BLACK, top, bottom, left,
-        right,Canvasb);
+        right,myCanvas);
         testball.draw();
         
         boolean exist = true;
         
         while(exist = true)
         {
-            Canvasb.wait(50);
+            myCanvas.wait(50);
+            
+            myCanvas.setForegroundColor(Color.BLACK);
+            myCanvas.drawLine(top,left,top,bottom); //left wall
+            myCanvas.drawLine(top,left,right,top); // top wall
+            myCanvas.drawLine(left,bottom,right,bottom); //bottom wall
+            myCanvas.drawLine(right,top,right,bottom);// right wall
             
             testball.move();
         }

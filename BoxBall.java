@@ -1,13 +1,13 @@
 import java.awt.*;
 import java.awt.geom.*;
 import java.util.Random;
-import java.util.HashMap;
 /**
  * "This method draws a rectangle (the box) 
  * on screen and between five and thirty balls that move inside the box."
  *
- * @author Andrew Riganati
- * @version 3/22/2019
+ * @author Andrew Riganati with signifigant credit to Claire Iroudayassamy and several others for providing much needed
+ * fixes and troubleshooting
+ * @version 3/26/2019
  */
 public class BoxBall
 {
@@ -15,8 +15,6 @@ public class BoxBall
     
     private Color color;
     private int diameter;
-    private int xspeed;
-    private int yspeed;
     private Ellipse2D.Double circle;
     private int yPosition;
     private int xPosition;
@@ -27,6 +25,7 @@ public class BoxBall
     private Canvas canvas;
     private int ySpeed = 1;
     private int xSpeed = 2;
+    private Random rand = new Random();
 
     /**
      * Constructor for objects of class BoxBall
@@ -34,11 +33,15 @@ public class BoxBall
      * @param yPos  the vertical coordinate of the ball
      * @param ballDiameter  the diameter (in pixels) of the ball
      * @param ballColor  the color of the ball
-     * @param drawingCanvas  the canvas to draw this ball on
      * @param distRandy the random distance integer on which y-axis ball
      * movement is determined
      * @param distRandx the random distance integer on which x-axis ball 
      * movement is determined.
+     * @param toppos the y position of the top wall
+     * @param botpos the y position of the bottom wall
+     * @param leftpos the x position of the left wall
+     * @param rightpos the x position of the right wall
+     * @param drawingCanvas  the canvas to draw this ball on
      */
     
     public BoxBall(int xPos, int yPos, int ballDiameter, Color ballColor,int toppos, 
@@ -49,13 +52,21 @@ public class BoxBall
         yPosition = yPos;
         color = ballColor;
         diameter = ballDiameter;
-        canvas = drawingCanvas;
         top = toppos;
         bottom = botpos;
         left = leftpos;
         right = rightpos;
+        canvas = drawingCanvas;
         
+        while(ySpeed == 0)
+        {
+            ySpeed = rand.nextInt(6) + 1;
+        }
         
+        while(xSpeed == 0)
+        {
+            xSpeed = rand.nextInt(6) + 1;
+        }
     }
 
     /**
@@ -90,25 +101,24 @@ public class BoxBall
         xPosition += xSpeed;
         //if xPosition  +diameter > right
         // xPosition = right - diameter
-        if(yPosition <= (top - diameter)) {
+        if(yPosition <= (top)) {
             yPosition = (int)(top - diameter);
-             yPosition = ySpeed * 1;
+             ySpeed = -ySpeed;
         }
         
         if(yPosition >= (bottom - diameter)) {
             yPosition = (int)(bottom - diameter);
-            //
-             yPosition = ySpeed * -1;
+             ySpeed = -ySpeed;
         }
         
-        if(xPosition <= (left - diameter)) {
-            xPosition = (int)(left - diameter);
-             xPosition = xSpeed * 1;
+        if(xPosition <= (left)) {
+            xPosition = (int)(left);
+             xSpeed = -xSpeed;
         }
         
         if(xPosition >= (right - diameter)) {
             xPosition = (int)(right - diameter);
-             xPosition = xSpeed * -1;
+             xSpeed = -xSpeed;
         }
         draw();
     }
